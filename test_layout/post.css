@@ -1,0 +1,46 @@
+.post {
+    display: flex;
+    max-width: 600px;
+    padding: 10px;
+    border: .1px solid var(--gray);
+    transition: .2s;
+}
+
+.post:hover {
+    background-color: var(--darker-gray);
+}
+
+.post p {
+    padding: 5px 10px;
+    text-align: justify;
+}
+
+.post h2 {
+    display: inline;
+}
+
+.post span {
+    margin: 0 5px;
+    color: var(--light-gray);
+    font-weight: 800;
+}
+
+.post i {
+    color: var(--light-gray);
+}
+
+.avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    transition: .2s
+}
+
+.avatar:hover {
+    filter: opacity(85%);
+}
+
+.text-content {
+    margin-top: 10px;
+    margin-left: 20px;
+}

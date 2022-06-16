@@ -1,0 +1,14 @@
+:root {
+    --blacker: rgb(1, 1, 2);
+    --black: rgb(4, 7, 10);
+    --darker-gray: rgba(25, 35, 44, 0.274);
+    --dark-gray: rgba(25, 35, 44);
+    --gray: rgb(41, 56, 71);
+    --light-gray: rgb(95, 126, 156);
+    --lighter-gray: rgb(174, 209, 245);
+    --white: rgb(200, 212, 224);
+    --whiter: rgb(225, 234, 243);
+    --dark-blue: rgba(0, 80, 161, 0.363);
+    --blue: rgb(0, 81, 161);
+    --light-blue: rgb(0, 128, 255);
+}

@@ -1,0 +1,16 @@
+.userPost textarea {
+    background-color: inherit;
+    color: inherit;
+    border: none;
+    width: 100%;
+    height: 120px;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+.userPost {
+    min-height: 120px;
+    max-height: 600px;
+    max-width: 600px;
+    border-top: none;
+}
