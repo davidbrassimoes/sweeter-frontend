@@ -1,18 +1,20 @@
+import Link from "../node_modules/next/link";
+
 export default function Home() {
   return (
     <>
       <h1>Hello Sweeter!</h1>
       <button className="sweet-button">
-        <a href="/test-layout">Test</a>
+        <Link href="/test-layout"><a>Test</a></Link>
       </button>
       <button className="sweet-button">
-        <a href="/feed">Feed</a>
+        <Link href="/feed"><a>Feed</a></Link>
       </button>
       <button className="sweet-button">
-        <a href="/chat">Chat</a>
+        <Link href="/chat"><a>Chat</a></Link>
       </button>
       <button className="sweet-button">
-        <a href="/settings">Settings</a>
+        <Link href="/settings"><a>Settings</a></Link>
       </button>
     </>
   )

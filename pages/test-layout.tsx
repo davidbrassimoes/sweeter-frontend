@@ -1,4 +1,5 @@
 import styles from 'test-layout.module.css'
+import Link from '../node_modules/next/link'
 
 export default function TestLayout() {
     return (
@@ -24,7 +25,7 @@ export default function TestLayout() {
                         corrupti hic rerum qui fuga mollitia voluptatem consequuntur magni deserunt tenetur, incidunt,
                         fugit, ratione nulla.</p>
                     <button className="sweet-button">
-                        <a href="/">Sweet</a>
+                        <Link href="/"><a>Sweet</a></Link>
                     </button>
                 </div>
             </div>
@@ -38,7 +39,7 @@ export default function TestLayout() {
                         corrupti hic rerum qui fuga mollitia voluptatem consequuntur magni deserunt tenetur, incidunt,
                         fugit, ratione nulla.</p>
                     <button className="sweet-button">
-                        <a href="/">Sweet</a>
+                        <Link href="/"><a>Sweet</a></Link>
                     </button>
                 </div>
             </div>
@@ -52,7 +53,7 @@ export default function TestLayout() {
                         corrupti hic rerum qui fuga mollitia voluptatem consequuntur magni deserunt tenetur, incidunt,
                         fugit, ratione nulla.</p>
                     <button className="sweet-button">
-                        <a href="/">Sweet</a>
+                        <Link href="/"><a>Sweet</a></Link>
                     </button>
                 </div>
             </div>
