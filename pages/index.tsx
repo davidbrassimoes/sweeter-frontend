@@ -5,9 +5,6 @@ export default function Home() {
     <>
       <h1>Hello Sweeter!</h1>
       <button className="sweet-button">
-        <Link href="/test-layout"><a>Test</a></Link>
-      </button>
-      <button className="sweet-button">
         <Link href="/feed"><a>Feed</a></Link>
       </button>
       <button className="sweet-button">
@@ -15,6 +12,9 @@ export default function Home() {
       </button>
       <button className="sweet-button">
         <Link href="/settings"><a>Settings</a></Link>
+      </button>
+      <button className="sweet-button">
+        <Link href="/user"><a>Users</a></Link>
       </button>
     </>
   )
