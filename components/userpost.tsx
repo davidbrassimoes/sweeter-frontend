@@ -1,18 +1,41 @@
 import Link from "../node_modules/next/link";
+import { useState } from 'react'
 
 export default function UserPost() {
+
+    const [postContent, setPostContent] = useState('')
+
+    const createPost = async () => {
+        const res = await fetch('http://localhost:3001/posts', {
+            method: 'POST',
+            body: JSON.stringify({ content: postContent, user: 1 }),
+            headers: {
+                'content-type': 'application/json;charset=UTF-8',
+            }
+        })
+        const data = await res.json()
+        console.log(data);
+    }
 
     return (
         <>
             <div className="post userPost">
-                <div className="text-content">
-                    <textarea placeholder="Tell us something Sweet..." wrap="hard" maxlength="255" rows="5"
-                        cols="50"></textarea>
-                    <button className="sweet-button">
-                        <Link href="/"><a>Sweet</a></Link>
-                    </button>
-                </div>
+                <input
+                    value={postContent}
+                    onChange={e => setPostContent(e.target.value)}
+                    className="text-content"
+                    type="text-content"
+                    id="content"
+                    name="content"
+                    placeholder="Tell us something Sweet..."
+                    required />
+                <button
+                    className="sweet-button"
+                    onClick={createPost}>
+                    <a>Sweet</a>
+                </button>
             </div>
         </>
     )
-} 
+}
+
