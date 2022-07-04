@@ -1,0 +1,10 @@
+.log {
+    display: grid;
+    border: 1px solid var(--light-gray);
+    padding: 5px;
+    margin-top: 20px;
+}
+
+.log input {
+    background-color: var(--dark-gray)
+}
