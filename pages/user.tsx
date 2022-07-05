@@ -27,11 +27,9 @@ export default function User() {
         <>
             {users.map(user => (
                 <>
-                    <h1> {user.username} </h1>
-                    <h1> {user.bio} </h1>
+                    <h1> {user.username} // {user.bio} </h1>
                 </>
             ))}
-            <h1> {users[1].username} </h1>
         </>
     )
 
