@@ -4,11 +4,25 @@ import UserPost from "../../components/userpost";
 
 
 export default function Feed({ data }) {
+
+    const feed = data.sort((a, b) => {
+        const fa = a.createdAt.toLowerCase()
+        const fb = b.createdAt.toLowerCase();
+
+        if (fa < fb) {
+            return 1;
+        }
+        if (fa > fb) {
+            return -1;
+        }
+        return 0;
+    });
+
     return (
         <>
             <UserPost></UserPost>
             {data.map(post => (
-                <div className="post">
+                <div className="post" key={post.id}>
                     <h2> @{post.user.username} </h2>
                     <span>&middot;</span>
                     <i> {post.createdAt} </i>

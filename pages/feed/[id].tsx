@@ -19,7 +19,7 @@ export default function Post(data) {
                     <i> {post.createdAt} </i>
                     <p> {post.content} </p>
                     <button className="sweet-button">
-                        <Link href="/feed"><a>Sweet</a></Link>
+                        <Link href="/"><a>Home</a></Link>
                     </button>
                 </div>
             }

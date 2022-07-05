@@ -16,7 +16,6 @@ export default function User() {
             .then((users) => {
                 setUsers(users)
                 setLoading(false)
-                console.log(users[1].username)
             })
     }, [])
 
