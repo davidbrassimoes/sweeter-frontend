@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { URL } from "url";
 import { useRouter } from "../node_modules/next/router"
 
 export default function SignUp() {
@@ -8,7 +9,9 @@ export default function SignUp() {
     const [bio, setBio] = useState('');
     const [email, setEmail] = useState('');
 
-    const createUser = async () => {
+    const createUser = async (e) => {
+
+        e.preventDefault()
 
         if (username && password && bio && email) {
 
@@ -26,8 +29,11 @@ export default function SignUp() {
             })
             const data = await res.json()
             console.log(data);
+
+            return alert(`User @${username} has been created! Welcome! Login above!`)
+
         }
-        else return null;
+        else return alert("please fill the form");
 
     }
 
