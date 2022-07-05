@@ -1,6 +1,6 @@
 import Link from "../../node_modules/next/link";
 import UserPost from "../../components/userpost";
-// import * from "../node_modules/luxon"
+import { DateTime } from "luxon";
 
 
 export default function Feed({ data }) {
@@ -25,7 +25,7 @@ export default function Feed({ data }) {
                 <div className="post" key={post.id}>
                     <h2> @{post.user.username} </h2>
                     <span>&middot;</span>
-                    <i> {post.createdAt} </i>
+                    <i> {DateTime.fromISO(`${post.createdAt}`).toFormat('dd-MM-yyyy HH:mm')} </i>
                     <p> {post.content} </p>
                     <button className="sweet-button">
                         <Link href={`/feed/${post.id}`}><a>Sweet</a></Link>

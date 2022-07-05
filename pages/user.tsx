@@ -23,13 +23,13 @@ export default function User() {
     if (!users) return <p>No profile data</p>
 
     return (
-        <>
+        <div>
             {users.map(user => (
-                <>
-                    <h1> {user.username} // {user.bio} </h1>
-                </>
+                <h1 key={user.id}>
+                    {user.username} // {user.bio}
+                </h1>
             ))}
-        </>
+        </div>
     )
 
 
