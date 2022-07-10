@@ -1,4 +1,5 @@
 import Link from "../node_modules/next/link";
+import LogOut from "./logout";
 
 export default function SideBar() {
     return (
@@ -18,6 +19,7 @@ export default function SideBar() {
             <button className="sweet-button">
                 <Link href="/user"><a>Users</a></Link>
             </button>
+            <LogOut />
         </div>
     )
 }

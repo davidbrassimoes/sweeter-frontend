@@ -5,6 +5,7 @@ import { DateTime } from "luxon";
 
 export default function Feed({ data }) {
 
+
     const feed = data.sort((a, b) => {
         const fa = a.createdAt.toLowerCase()
         const fb = b.createdAt.toLowerCase();

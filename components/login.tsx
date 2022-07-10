@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 export default function LogIn() {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const logUser = async (e) => {
+
+    const logUser = async (e: FormEvent) => {
 
         e.preventDefault()
 
@@ -28,7 +29,15 @@ export default function LogIn() {
 
             if (data.code === 401) return alert('Bad credentials!')
 
-            if (data.token) return alert(`User @${username} Logged!`)
+            if (data.token) {
+                localStorage.setItem("token", data.token)
+                localStorage.setItem("user", username)
+                console.log(
+                    localStorage.getItem("token"),
+                    localStorage.getItem("user"),
+                    "DEU?"
+                );
+            }
 
 
 
@@ -55,7 +64,7 @@ export default function LogIn() {
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 className="text-content"
-                type="text"
+                type="password"
                 id="password"
                 name="password"
                 placeholder="password"

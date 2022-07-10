@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 export default function SignUp() {
 
@@ -7,13 +7,13 @@ export default function SignUp() {
     const [bio, setBio] = useState('');
     const [email, setEmail] = useState('');
 
-    const createUser = async (e) => {
+    const createUser = async (e: FormEvent) => {
 
         e.preventDefault()
 
         if (username && password && bio && email) {
 
-            const res = await fetch('http://localhost:3001/users', {
+            const res = await fetch('http://localhost:3001/users/create', {
                 method: 'POST',
                 body: JSON.stringify({
                     username,
@@ -54,7 +54,7 @@ export default function SignUp() {
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                     className="text-content"
-                    type="text"
+                    type="password"
                     id="password"
                     name="password"
                     placeholder="password"
@@ -74,7 +74,7 @@ export default function SignUp() {
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     className="text-content"
-                    type="text"
+                    type="email"
                     id="email"
                     name="email"
                     placeholder="email"
