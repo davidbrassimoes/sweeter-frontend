@@ -54,6 +54,7 @@ export function AuthProvider(props: AuthProviderProps) {
     function logout() {
         setToken('');
         setUser(null);
+        alert("Logged Out!")
     }
 
     console.log("CONTEXT:", token, user);

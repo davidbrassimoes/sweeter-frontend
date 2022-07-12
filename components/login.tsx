@@ -16,8 +16,9 @@ export default function LogIn() {
             try {
                 await login(username, password)
                 reset()
+                alert(`${username} Logged With Success!`)
             } catch (err) {
-                alert('Bad credentials!')
+                alert('Bad Credentials!')
             }
         }
         else return alert("Not Logged!");
