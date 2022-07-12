@@ -1,25 +1,23 @@
-import Link from "../node_modules/next/link";
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
+import { useAuth } from '../hooks/useAuth'
+import { api } from "../services/api"
+
 
 export default function UserPost() {
 
     const [postContent, setPostContent] = useState('')
 
-    const createPost = async (e) => {
+    const { user } = useAuth()
+
+    const createPost = async (e: FormEvent) => {
 
         e.preventDefault()
 
         if (postContent) {
-            const res = await fetch('http://localhost:3001/posts', {
-                method: 'POST',
-                body: JSON.stringify({ content: postContent, user: 1 }),
-                headers: {
-                    'content-type': 'application/json;charset=UTF-8',
-                }
-            })
-            const data = await res.json()
-            console.log(data);
+            const { data } = await api.post('/posts', { content: postContent, user: user.id })
 
+            console.log(data);
+            setPostContent('')
             return alert(`Sweet Published!`)
         }
 

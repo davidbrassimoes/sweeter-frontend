@@ -1,6 +1,5 @@
-import Link from "../../node_modules/next/link";
 import UserPost from "../../components/userpost";
-import { DateTime } from "luxon";
+import Post from "../../components/post";
 
 
 export default function Feed({ data }) {
@@ -22,30 +21,30 @@ export default function Feed({ data }) {
     return (
         <>
             <UserPost></UserPost>
-            {data.map(post => (
-                <div className="post" key={post.id}>
-                    <h2> @{post.user.username} </h2>
-                    <span>&middot;</span>
-                    <i> {DateTime.fromISO(`${post.createdAt}`).toFormat('dd-MM-yyyy HH:mm')} </i>
-                    <p> {post.content} </p>
-                    <button className="sweet-button">
-                        <Link href={`/feed/${post.id}`}><a>Sweet</a></Link>
-                    </button>
-                </div>
-            ))}
+            <Post data={data}></Post>
+
         </>
     )
 }
 
 export async function getServerSideProps() {
-    const res = await fetch(`http://localhost:3001/posts`, {
+    const postRes = await fetch(`http://localhost:3001/posts`, {
         method: 'GET',
         headers: {
             'content-type': 'application/json;charset=UTF-8',
         },
     })
-    const data = await res.json()
-
+    const data = await postRes.json()
+    // const postData = await postRes.json()
+    //mudar isto para reposts depois de definir o componente essas coisinhas
+    // const repostRes = await fetch(`http://localhost:3001/posts`, {
+    //     method: 'GET',
+    //     headers: {
+    //         'content-type': 'application/json;charset=UTF-8',
+    //     },
+    // })
+    // const repostData = await repostRes.json()
+    // const data = [...postData, ...repostData]
     return { props: { data } }
 }
 

@@ -1,4 +1,5 @@
 import { FormEvent, useState } from "react";
+import { api } from "../services/api"
 
 export default function SignUp() {
 
@@ -13,28 +14,19 @@ export default function SignUp() {
 
         if (username && password && bio && email) {
 
-            const res = await fetch('http://localhost:3001/users/create', {
-                method: 'POST',
-                body: JSON.stringify({
-                    username,
-                    password,
-                    bio,
-                    email
-                }),
-                headers: {
-                    'content-type': 'application/json;charset=UTF-8',
-                }
-            })
-            const data = await res.json()
+            const { data } = await api.post('/users/create', { username, password, bio, email })
             console.log(data);
-
+            reset()
             return alert(`User @${username} has been created! Welcome! Login above!`)
-
         }
         else return alert("please fill the form");
-
     }
-
+    function reset() {
+        setUsername('');
+        setPassword('');
+        setBio('');
+        setEmail('');
+    }
     return (
         <>
             <form className="log">

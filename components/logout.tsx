@@ -1,10 +1,8 @@
-export default function LogOut() {
+import { FormEvent } from 'react'
+import { useAuth } from '../hooks/useAuth'
 
-    function logout() {
-        localStorage.setItem("token", null)
-        localStorage.setItem("user", null)
-        alert("Loged Out!")
-    }
+export default function LogOut() {
+    const { logout } = useAuth()
 
     return (
 

@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react"
+import { useAuth } from '../hooks/useAuth'
+
 
 export default function User() {
     const [users, setUsers] = useState(null)
     const [isLoading, setLoading] = useState(false)
     const token = localStorage.getItem("token")
+
+    const { user } = useAuth()
+    console.log(user)
 
     useEffect(() => {
         setLoading(true)
@@ -24,12 +29,12 @@ export default function User() {
     if (isLoading) return <p>Loading...</p>
     if (!users) return <p>No profile data</p>
 
-    const activeUser = localStorage.getItem("user")
+    const activeUser = user.username
     console.log("ACTIVE USER: ", activeUser);
 
     return (
         <div>
-            <h1>ACTIVE USER {activeUser} </h1>
+            <h1>ACTIVE USER @{activeUser} </h1>
             <hr />
             {users.map(user => (
                 <h1 key={user.id}>
