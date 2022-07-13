@@ -39,7 +39,6 @@ export function AuthProvider(props: AuthProviderProps) {
         }
     }, [token]);
 
-
     async function login(username: string, password: string) {
         try {
             const { data } = await api.post<AuthResponse>('/users/login', { username, password });
@@ -50,14 +49,11 @@ export function AuthProvider(props: AuthProviderProps) {
         }
     }
 
-
     function logout() {
         setToken('');
         setUser(null);
         alert("Logged Out!")
     }
-
-    console.log("CONTEXT:", token, user);
 
     return (
         <AuthContext.Provider value={{ user, token, login, logout, isLoggedIn: !!token }}{...props} />

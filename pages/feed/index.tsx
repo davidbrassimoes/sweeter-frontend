@@ -1,11 +1,11 @@
 import UserPost from "../../components/userpost";
 import Post from "../../components/post";
+import { useEffect, useState } from "react";
+import { api } from '../../services/api'
 
+function sortPostsByDate(p) {
 
-export default function Feed({ data }) {
-
-
-    const feed = data.sort((a, b) => {
+    p.sort((a, b) => {
         const fa = a.createdAt.toLowerCase()
         const fb = b.createdAt.toLowerCase();
 
@@ -17,34 +17,39 @@ export default function Feed({ data }) {
         }
         return 0;
     });
+}
+
+export default function Feed() {
+    const [posts, setPosts] = useState([])
+    const [reposts, setReposts] = useState([])
+    const [isLoading, setLoading] = useState(false)
+
+    useEffect(() => {
+        setLoading(true)
+        api.get('/posts').then(({ data }) => {
+            setPosts(data)
+        })
+        setLoading(false)
+    }, [])
+
+    useEffect(() => {
+        setLoading(true)
+        api.get('/reposts').then(({ data }) => {
+            setReposts(data)
+        })
+        setLoading(false)
+    }, [])
+
+    if (isLoading) return <p>Loading...</p>
+    if (!posts && !reposts) return <p>Nothing Sweet Here...</p>
+
+    const feed = [...posts, ...reposts]
+    sortPostsByDate(feed)
 
     return (
         <>
             <UserPost></UserPost>
-            <Post data={data}></Post>
-
+            <Post data={feed}></Post>
         </>
     )
 }
-
-export async function getServerSideProps() {
-    const postRes = await fetch(`http://localhost:3001/posts`, {
-        method: 'GET',
-        headers: {
-            'content-type': 'application/json;charset=UTF-8',
-        },
-    })
-    const data = await postRes.json()
-    // const postData = await postRes.json()
-    //mudar isto para reposts depois de definir o componente essas coisinhas
-    // const repostRes = await fetch(`http://localhost:3001/posts`, {
-    //     method: 'GET',
-    //     headers: {
-    //         'content-type': 'application/json;charset=UTF-8',
-    //     },
-    // })
-    // const repostData = await repostRes.json()
-    // const data = [...postData, ...repostData]
-    return { props: { data } }
-}
-

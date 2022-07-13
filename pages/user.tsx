@@ -1,36 +1,24 @@
 import { useEffect, useState } from "react"
 import { useAuth } from '../hooks/useAuth'
+import { api } from '../services/api'
 
 
 export default function User() {
     const [users, setUsers] = useState(null)
     const [isLoading, setLoading] = useState(false)
-    const token = localStorage.getItem("token")
-
     const { user } = useAuth()
-    console.log(user)
-
     useEffect(() => {
         setLoading(true)
-        fetch('http://localhost:3001/users', {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json;charset=UTF-8',
-                'Authorization': `${token}`
-            },
+        api.get('/users').then(({ data }) => {
+            setUsers(data)
+            setLoading(false)
         })
-            .then((res) => res.json())
-            .then((users) => {
-                setUsers(users)
-                setLoading(false)
-            })
     }, [])
 
     if (isLoading) return <p>Loading...</p>
     if (!users) return <p>No profile data</p>
 
     const activeUser = user.username
-    console.log("ACTIVE USER: ", activeUser);
 
     return (
         <div>
