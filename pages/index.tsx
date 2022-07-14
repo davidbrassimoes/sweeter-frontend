@@ -1,14 +1,15 @@
 import LogIn from "../components/login";
 import SideBar from "../components/sidebar";
 import SignUp from "../components/sign-up";
+import UserPost from "../components/userpost";
 import { useAuth } from '../hooks/useAuth'
 
 
 function NeedsLog() {
   return (
     <>
-      <LogIn></LogIn>
-      <SignUp></SignUp>
+      <LogIn />
+      <SignUp />
     </>
   )
 }
@@ -21,14 +22,14 @@ export default function Home() {
     return (
       <>
         <SideBar />
-        <h1>Hello {user.username} </h1>
+        <UserPost />
       </>
     )
 
   } else return (
     <>
-      <h1>Hello Sweeter</h1>
-      <h1>Please Log In or Sign Up to check something Sweet!!!</h1>
+      <h1 className="text-2xl">Welcome To Sweeter!</h1>
+      <h1 className="text-xl">Please Log In or Sign Up to check something Sweet!!!</h1>
       <NeedsLog />
     </>
   )

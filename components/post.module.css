@@ -4,6 +4,7 @@
     padding: 10px;
     border: .1px solid var(--gray);
     transition: .2s;
+    justify-content: space-between;
 }
 
 .post:hover {

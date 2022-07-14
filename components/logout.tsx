@@ -1,5 +1,6 @@
 import { FormEvent } from 'react'
 import { useAuth } from '../hooks/useAuth'
+import Link from '../node_modules/next/link'
 
 export default function LogOut() {
     const { logout } = useAuth()
@@ -12,7 +13,7 @@ export default function LogOut() {
             id="logout"
             onClick={logout}
         >
-            Logout
+            <Link href="./"><a>Logout</a></Link>
         </button>
 
     )
