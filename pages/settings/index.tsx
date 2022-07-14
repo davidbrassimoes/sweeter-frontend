@@ -20,13 +20,26 @@ export default function Settings() {
     if (isLoading) return <p>Loading...</p>
     if (!profile) return <p>No profile data</p>
 
-    console.log(profile)
+    const userFollows = profile.followsUser
+    const tagFollows = profile.followsTag
 
     return (
         <>
             <SideBar />
-            <h1 className="text-5xl">@{profile.username}</h1>
-            <i className="text-5xl">{profile.bio}</i>
+            <h1 className="text-3xl">@{profile.username}: <i>{profile.bio}</i> </h1>
+            <h2 className="text-xl">Users Followed:</h2>
+            {userFollows.map(x => (
+                <div className="post" key={x.id}>
+                    <Link href={`users/${x.id}`}><a><i>@{x.username}</i></a></Link>
+
+                </div>
+            ))}
+            <h2 className="text-xl">Tags Followed:</h2>
+            {tagFollows.map(x => (
+                <div className="post" key={x.id}>
+                    <Link href={`tags/${x.id}`}><a><i>#{x.content}</i></a></Link>
+                </div>
+            ))}
         </>
     )
 }

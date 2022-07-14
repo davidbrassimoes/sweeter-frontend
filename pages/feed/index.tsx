@@ -5,22 +5,7 @@ import { api } from '../../services/api'
 import SideBar from "../../components/sidebar";
 import { DateTime } from "luxon";
 import Link from "../../node_modules/next/link";
-
-function sortPostsByDate(p) {
-
-    p.sort((a, b) => {
-        const fa = a.createdAt.toLowerCase()
-        const fb = b.createdAt.toLowerCase();
-
-        if (fa < fb) {
-            return 1;
-        }
-        if (fa > fb) {
-            return -1;
-        }
-        return 0;
-    });
-}
+import { sortPostsByDate } from "../../services/sort";
 
 export default function Feed() {
     const [posts, setPosts] = useState([])
@@ -33,9 +18,6 @@ export default function Feed() {
             setPosts(data)
             setLoading(false)
         })
-    }, [])
-
-    useEffect(() => {
         setLoading(true)
         api.get('/reposts').then(({ data }) => {
             setReposts(data)
@@ -43,7 +25,8 @@ export default function Feed() {
         })
     }, [])
 
-    if (posts.length == 0) return <p>Loading...</p>
+
+    if (isLoading) return <p>Loading...</p>
     if (!posts && !reposts) return <p>Nothing Sweet Here...</p>
 
     const feed = [...posts, ...reposts]

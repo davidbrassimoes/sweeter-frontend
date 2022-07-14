@@ -13,7 +13,7 @@
 
 .post p {
     padding: 5px 10px;
-    text-align: justify;
+    text-align: start;
 }
 
 .post h2 {
@@ -44,4 +44,17 @@
 .text-content {
     margin-top: 10px;
     margin-left: 20px;
+}
+
+.to-repost {
+    color: var(--light-gray);
+    font-style: italic;
+}
+
+.to-repost:hover {
+    color: var(--blue);
+}
+
+.user-link:hover {
+    color: var(--light-blue);
 }

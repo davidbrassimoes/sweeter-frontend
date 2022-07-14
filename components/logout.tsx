@@ -13,7 +13,7 @@ export default function LogOut() {
             id="logout"
             onClick={logout}
         >
-            <Link href="./"><a>Logout</a></Link>
+            <Link href="../"><a>Logout</a></Link>
         </button>
 
     )
