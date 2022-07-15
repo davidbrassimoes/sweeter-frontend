@@ -66,10 +66,7 @@ export default function UserProfile() {
         }
     })
 
-
     const hasPosts = profilePosts.length !== 0
-
-    console.log("profilePosts", profilePosts);
 
     if (profile) {
         return (

@@ -1,5 +1,7 @@
 import { DateTime } from "luxon";
 import Link from "../node_modules/next/link";
+import { likeHandler } from '../services/like'
+
 
 export default function Post({ data }) {
 

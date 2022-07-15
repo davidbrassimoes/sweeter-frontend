@@ -8,6 +8,7 @@ import SideBar from "../../components/sidebar";
 import { useAuth } from '../../hooks/useAuth'
 import RepostForm from "../../components/repost";
 import { DateTime } from "luxon";
+import { sortPostsByDate } from "../../services/sort";
 
 export function Profile({ profile }) {
     return (
@@ -31,6 +32,8 @@ export default function TagProfile() {
     const [isLoading, setLoading] = useState(false)
     const [profile, setProfile] = useState()
     const [posts, setPosts] = useState([])
+    const [reposts, setReposts] = useState([])
+    const profilePosts = new Array
 
     useEffect(() => {
         setLoading(true)
@@ -43,25 +46,31 @@ export default function TagProfile() {
             setPosts(data)
             setLoading(false)
         })
+        setLoading(true)
+        api.get('/reposts').then(({ data }) => {
+            setReposts(data)
+            setLoading(false)
+        })
     }, [])
     if (isLoading) return <p>Loading...</p>
-    if (!profile && !posts) return <p>Nothing Sweet Here...</p>
+    if (!profile) return <p>Nothing Sweet Here...</p>
 
 
-    const profilePosts = new Array
-    posts.map(post => {
-        post.tagged.map(x => {
-            if (x.id == id) {
-                profilePosts.push(post)
-            }
+    if (posts) {
+        const feed = [...posts, ...reposts]
+        sortPostsByDate(feed)
+        feed.map(post => {
+            post.tagged.map(t => {
+                if (t.id == id) {
+                    profilePosts.push(post)
+                }
+            })
+
         })
 
-    })
+    }
 
     const hasPosts = profilePosts.length !== 0
-    console.log("profile", profile);
-    console.log("posts", posts);
-    console.log("profilePosts", profilePosts);
 
     if (profile) {
         return (
