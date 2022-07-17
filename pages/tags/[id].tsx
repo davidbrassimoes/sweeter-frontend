@@ -12,7 +12,7 @@ import { sortPostsByDate } from "../../services/sort";
 import { followTagHandler } from "../../services/follow";
 
 
-function Profile({ profile }) {
+function Profile({ profile, followers }) {
     const router = useRouter()
     const { user } = useAuth()
     const { followsTag } = user
@@ -28,20 +28,21 @@ function Profile({ profile }) {
     return (
         <>
             <div className="post">
-                <h1 className='text-4xl'> Tag: #{profile.content}</h1>
-            </div>
-            <>
-                {
-                    followsThisTag ?
-                        <button onClick={() => console.log("let's see about unfollowing")} className="sweet-button">
-                            Unfollow
-                        </button> :
-                        <button onClick={() => followTagHandler(profile, user)} className="sweet-button">
-                            Follow
-                        </button>
-                }
-            </>
+                <h1 className='text-4xl'>#{profile.content}</h1>
+                <i>{followers.length} {followers.length === 1 ? "follower" : "followers"}</i>
 
+                <>
+                    {
+                        followsThisTag ?
+                            <button onClick={() => console.log("let's see about unfollowing")} className="sweet-button">
+                                Unfollow
+                            </button> :
+                            <button onClick={() => followTagHandler(profile, user)} className="sweet-button">
+                                Follow
+                            </button>
+                    }
+                </>
+            </div>
         </>
     )
 }
@@ -60,6 +61,8 @@ export default function TagProfile() {
     const [posts, setPosts] = useState([])
     const [reposts, setReposts] = useState([])
     const profilePosts = new Array
+    const [allUsers, setAllUsers] = useState([])
+
 
 
     useEffect(() => {
@@ -76,6 +79,11 @@ export default function TagProfile() {
         setLoading(true)
         api.get('/reposts').then(({ data }) => {
             setReposts(data)
+            setLoading(false)
+        })
+        setLoading(true)
+        api.get('/users').then(({ data }) => {
+            setAllUsers(data)
             setLoading(false)
         })
     }, [])
@@ -99,11 +107,20 @@ export default function TagProfile() {
 
     const hasPosts = profilePosts.length !== 0
 
+    const followers = new Array;
+    allUsers.map(u => {
+        u.followsTag.map(ft => {
+            if (ft.id == id) {
+                followers.push(u)
+            }
+        })
+    })
+
     if (profile) {
         return (
             <>
                 <SideBar />
-                <Profile profile={profile} />
+                <Profile profile={profile} followers={followers} />
                 {hasPosts ? <Post data={profilePosts} /> : <NoPosts profile={profile} />}
             </>
         )
