@@ -33,7 +33,7 @@ export default function Post({ data }) {
 
                         <> {post.isRepost ?
                             <>
-                                <div>
+                                <div key={post.post.id}>
                                     <p>{post.content}</p>
                                     <Link href={`../feed/${post.post.id}`} ><a className="to-repost"><p>{post.post.content}</p></a></Link>
                                 </div>

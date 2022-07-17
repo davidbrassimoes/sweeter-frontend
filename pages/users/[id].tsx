@@ -11,7 +11,7 @@ import { DateTime } from "luxon";
 import { sortPostsByDate } from "../../services/sort";
 import { followUserHandler } from "../../services/follow";
 
-export function Profile({ profile }) {
+export function Profile({ profile, followers }) {
     const router = useRouter()
     const { user } = useAuth()
     const { followsUser } = user
@@ -21,13 +21,17 @@ export function Profile({ profile }) {
     followsUser.map(x => {
         if (x.id === +id) {
             followsThisUser = (x.id === +id)
-            console.log("inside", followsThisUser)
         }
     })
     return (
         <>
             <div className="post">
-                <h1 className='text-4xl'> User: @{profile.username}</h1>
+                <div className="avatar" style={{ backgroundColor: `${profile.avatarColor}` }}>{profile.username.substr(0, 1).toUpperCase()}</div>
+                <h1 className='text-4xl'>@{profile.username}</h1>
+                <i>{followers.length} {followers.length === 1 ? "follower" : "followers"}</i>
+            </div>
+            <div className="post">
+                <i className='text-2xl pl-5'>{profile.bio}</i>
                 <>
                     {
                         followsThisUser ?
@@ -40,10 +44,6 @@ export function Profile({ profile }) {
                     }
                 </>
             </div>
-            <div className="post">
-                <h1 className='text-2xl'> Bio: <i>{profile.bio}</i></h1>
-            </div>
-
         </>
     )
 }
@@ -61,6 +61,7 @@ export default function UserProfile() {
     const [profile, setProfile] = useState()
     const [posts, setPosts] = useState([])
     const [reposts, setReposts] = useState([])
+    const [allUsers, setAllUsers] = useState([])
 
     useEffect(() => {
         setLoading(true)
@@ -78,6 +79,11 @@ export default function UserProfile() {
             setReposts(data)
             setLoading(false)
         })
+        setLoading(true)
+        api.get('/users').then(({ data }) => {
+            setAllUsers(data)
+            setLoading(false)
+        })
     }, [])
     if (isLoading) return <p>Loading...</p>
     if (!profile) return <p>Nothing Sweet Here...</p>
@@ -93,11 +99,20 @@ export default function UserProfile() {
 
     const hasPosts = profilePosts.length !== 0
 
+    const followers = new Array;
+    allUsers.map(u => {
+        u.followsUser.map(fu => {
+            if (fu.id == id) {
+                followers.push(u)
+            }
+        })
+    })
+
     if (profile) {
         return (
             <>
                 <SideBar />
-                <Profile profile={profile} />
+                <Profile profile={profile} followers={followers} />
                 {hasPosts ? <Post data={profilePosts} /> : <NoPosts profile={profile} />}
             </>
         )

@@ -76,12 +76,13 @@ export default function SignUp() {
                     required />
                 <div className="post">
                     <h1>Choose an Avatar Color</h1>
-                    <div
+                    <button
+                        type="button"
                         onClick={(e) => setAvatarColor(getColor(e))}
                         className="avatar"
                         style={{ backgroundColor: avatarColor }}>
                         New
-                    </div>
+                    </button>
                 </div>
                 <button
                     className="sweet-button"

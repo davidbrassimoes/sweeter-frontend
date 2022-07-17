@@ -13,8 +13,8 @@ export default function RepostForm(value) {
         if (repostContent) {
             const { data } = await api.post('/reposts', { content: repostContent, user: user.id, post: { "id": value.value } })
             setRepostContent('')
-            alert(`Sweet Published!`)
-            return console.log("value", value.value);
+            console.log(data);
+            return alert(`Sweet Published!`)
 
         }
         else return alert(`SWEETS MUST HAVE SWEET CONTENT!!!`)
