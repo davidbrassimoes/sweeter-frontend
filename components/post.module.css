@@ -5,6 +5,7 @@
     border: .1px solid var(--gray);
     transition: .2s;
     justify-content: space-between;
+    align-items: center;
 }
 
 .post:hover {
@@ -31,14 +32,21 @@
 }
 
 .avatar {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     border-radius: 100%;
-    transition: .2s
+    transition: .2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    pointer-events: pointer;
 }
 
 .avatar:hover {
     filter: opacity(85%);
+    color: var(--light-blue)
 }
 
 .text-content {
@@ -57,4 +65,9 @@
 
 .user-link:hover {
     color: var(--light-blue);
+}
+
+.repost {
+    display: flex;
+    flex-direction: column;
 }

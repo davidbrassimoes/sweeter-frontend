@@ -3,6 +3,7 @@ import Link from "../node_modules/next/link";
 import { likeHandler } from '../services/like'
 
 
+
 export default function Post({ data }) {
 
     data.map(post => {
@@ -17,33 +18,37 @@ export default function Post({ data }) {
     return (
         <>
             {data.map(post => (
-                <div className="post" key={post.isRepost ? `${post.id}_r` : post.id}>
-                    <div>
-                        <Link href={`../users/${post.user.id}`}>
-                            <a><h2 className="user-link"> @{post.user.username}</h2></a>
-                        </Link>
-                        <h3><i> {DateTime.fromISO(`${post.createdAt}`).toFormat('dd-MM-yyyy HH:mm')} </i></h3>
+                <>
+                    <div className="post" key={post.isRepost ? `${post.id}_r` : post.id}>
+                        <div>
+                            <Link href={`../users/${post.user.id}`}>
+                                <a><div className="avatar" style={{ backgroundColor: `${post.user.avatarColor}` }}>{post.user.username.substr(0, 1).toUpperCase()}</div></a>
+                            </Link>
+                            <Link href={`../users/${post.user.id}`}>
+                                <a><h2 className="user-link"> @{post.user.username}</h2></a>
+                            </Link>
+                            <h3><i>{DateTime.fromISO(`${post.createdAt}`).toFormat('dd-MM-yyyy HH:mm')}</i></h3>
 
-                    </div>
+                        </div>
 
-                    <p> {post.content} </p>
-                    <> {post.isRepost ?
-                        <>
-                            <div className="post">
-                                <Link href={`../feed/${post.post.id}`} ><a className="to-repost"><p>{post.post.content}</p></a></Link>
-                            </div>
-                            <button className="sweet-button">
-                                <Link href={`../feed/repost/${post.id}`} ><a>Sweet</a></Link>
-                            </button>
-                        </>
-                        :
+                        <> {post.isRepost ?
+                            <>
+                                <div>
+                                    <p>{post.content}</p>
+                                    <Link href={`../feed/${post.post.id}`} ><a className="to-repost"><p>{post.post.content}</p></a></Link>
+                                </div>
+
+                            </>
+                            :
+                            <p>{post.content}</p>
+                        } </>
                         <button className="sweet-button">
                             <Link href={`../feed/${post.id}`} ><a>Sweet</a></Link>
                         </button>
-                    } </>
 
-                </div>
+                    </div>
 
+                </>
             ))}
         </>
     )

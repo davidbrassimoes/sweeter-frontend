@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import { api } from "../services/api"
+import { getColor, saveColor } from "../services/color"
 
 export default function SignUp() {
 
@@ -7,14 +8,15 @@ export default function SignUp() {
     const [password, setPassword] = useState('');
     const [bio, setBio] = useState('');
     const [email, setEmail] = useState('');
+    const [avatarColor, setAvatarColor] = useState('');
 
     const createUser = async (e: FormEvent) => {
 
         e.preventDefault()
 
-        if (username && password && bio && email) {
+        if (username && password && bio && email && avatarColor) {
 
-            const { data } = await api.post('/users/create', { username, password, bio, email })
+            const { data } = await api.post('/users/create', { username, password, bio, email, avatarColor })
             console.log(data);
             reset()
             return alert(`User @${username} has been created! Welcome! Login above!`)
@@ -26,6 +28,7 @@ export default function SignUp() {
         setPassword('');
         setBio('');
         setEmail('');
+        setAvatarColor('');
     }
     return (
         <>
@@ -71,6 +74,15 @@ export default function SignUp() {
                     name="email"
                     placeholder="email"
                     required />
+                <div className="post">
+                    <h1>Choose an Avatar Color</h1>
+                    <div
+                        onClick={(e) => setAvatarColor(getColor(e))}
+                        className="avatar"
+                        style={{ backgroundColor: avatarColor }}>
+                        New
+                    </div>
+                </div>
                 <button
                     className="sweet-button"
                     onClick={createUser}>

@@ -28,7 +28,7 @@ export default function SideBar() {
                     <Link href="/settings"><a>Settings</a></Link>
                 </button>
                 <div className="post">
-                    <p className="text-s"><i>active user:</i> @{activeUser} </p>
+                    <p className="text-s user-link"><i>active user:</i><Link href={`../users/${user.id}`}><a>@{activeUser}</a></Link></p>
                     <LogOut />
                 </div>
             </div>

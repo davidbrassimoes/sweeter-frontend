@@ -6,6 +6,25 @@ interface User {
     username: string;
     bio: string;
     email: string;
+    followsTag: Tag[];
+    followsUser: User[];
+    likes: Post[];
+    likesRepost: Repost[];
+}
+
+interface Tag {
+    id: number;
+    content: string;
+}
+
+interface Post {
+    id: number;
+    content: string;
+}
+
+interface Repost {
+    id: number;
+    content: string;
 }
 
 interface AuthResponse {

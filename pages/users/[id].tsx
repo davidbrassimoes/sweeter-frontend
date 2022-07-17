@@ -9,16 +9,41 @@ import { useAuth } from '../../hooks/useAuth'
 import RepostForm from "../../components/repost";
 import { DateTime } from "luxon";
 import { sortPostsByDate } from "../../services/sort";
+import { followUserHandler } from "../../services/follow";
 
 export function Profile({ profile }) {
+    const router = useRouter()
+    const { user } = useAuth()
+    const { followsUser } = user
+    const { id } = router.query
+
+    let followsThisUser = false
+    followsUser.map(x => {
+        if (x.id === +id) {
+            followsThisUser = (x.id === +id)
+            console.log("inside", followsThisUser)
+        }
+    })
     return (
         <>
             <div className="post">
                 <h1 className='text-4xl'> User: @{profile.username}</h1>
+                <>
+                    {
+                        followsThisUser ?
+                            <button onClick={() => console.log("let's see about unfollowing")} className="sweet-button">
+                                Unfollow
+                            </button> :
+                            <button onClick={() => followUserHandler(profile, user)} className="sweet-button">
+                                Follow
+                            </button>
+                    }
+                </>
             </div>
             <div className="post">
                 <h1 className='text-2xl'> Bio: <i>{profile.bio}</i></h1>
             </div>
+
         </>
     )
 }

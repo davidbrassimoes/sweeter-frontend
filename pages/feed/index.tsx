@@ -11,6 +11,8 @@ export default function Feed() {
     const [posts, setPosts] = useState([])
     const [reposts, setReposts] = useState([])
     const [isLoading, setLoading] = useState(false)
+    let [refresh, setRefresh] = useState(0)
+
 
     useEffect(() => {
         setLoading(true)
@@ -23,7 +25,7 @@ export default function Feed() {
             setReposts(data)
             setLoading(false)
         })
-    }, [])
+    }, [refresh])
 
 
     if (isLoading) return <p>Loading...</p>
@@ -32,17 +34,9 @@ export default function Feed() {
     const feed = [...posts, ...reposts]
     sortPostsByDate(feed)
 
-    feed.map(post => {
-        if (post.post == undefined) {
-            post.isRepost = false
-        }
-        if (post.post != undefined) {
-            post.isRepost = true
-        }
-    })
-
     return (
         <>
+            <button className='sweet-button' onClick={() => setRefresh(refresh++)}>Update</button>
             <SideBar />
             <UserPost />
             <Post data={feed} />

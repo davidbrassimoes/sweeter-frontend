@@ -9,13 +9,39 @@ import { useAuth } from '../../hooks/useAuth'
 import RepostForm from "../../components/repost";
 import { DateTime } from "luxon";
 import { sortPostsByDate } from "../../services/sort";
+import { followTagHandler } from "../../services/follow";
 
-export function Profile({ profile }) {
+
+function Profile({ profile }) {
+    const router = useRouter()
+    const { user } = useAuth()
+    const { followsTag } = user
+    const { id } = router.query
+
+    let followsThisTag = false
+    followsTag.map(x => {
+        if (x.id === +id) {
+            followsThisTag = (x.id === +id)
+            console.log("inside", followsThisTag)
+        }
+    })
     return (
         <>
             <div className="post">
                 <h1 className='text-4xl'> Tag: #{profile.content}</h1>
             </div>
+            <>
+                {
+                    followsThisTag ?
+                        <button onClick={() => console.log("let's see about unfollowing")} className="sweet-button">
+                            Unfollow
+                        </button> :
+                        <button onClick={() => followTagHandler(profile, user)} className="sweet-button">
+                            Follow
+                        </button>
+                }
+            </>
+
         </>
     )
 }
@@ -34,6 +60,7 @@ export default function TagProfile() {
     const [posts, setPosts] = useState([])
     const [reposts, setReposts] = useState([])
     const profilePosts = new Array
+
 
     useEffect(() => {
         setLoading(true)
