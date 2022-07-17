@@ -50,13 +50,19 @@ export default function SoloPost() {
             <>
                 <SideBar />
                 <div className="post">
-                    <h2> @{post.user.username} </h2>
-                    <span>&middot;</span>
+                    <Link href={`../users/${post.user.id}`}>
+                        <a><div className="avatar" style={{ backgroundColor: `${post.user.avatarColor}` }}>{post.user.username.substr(0, 1).toUpperCase()}</div></a>
+                    </Link>
+                    <Link href={`../users/${post.user.id}`}>
+                        <a><h2 className="user-link"> @{post.user.username}</h2></a>
+                    </Link>
                     <i> {DateTime.fromISO(`${post.createdAt}`).toFormat('dd-MM-yyyy HH:mm')} </i>
-                    <p> {post.content} </p>
+                </div>
+                <div className="post">
                     <button onClick={() => likeHandler(post, user)} className="sweet-button">
                         <a>Like {userLikes.length}</a>
                     </button>
+                    <p> {post.content} </p>
                 </div>
                 <div className="post">
                     <RepostForm value={post.id} />

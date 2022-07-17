@@ -14,13 +14,9 @@
 
 .post p {
     padding: 5px 10px;
-    text-align: start;
+    text-align: end;
     width: 100%;
 }
-
-/* .post h2 {
-    display: inline;
-} */
 
 .post span {
     margin: 0 5px;
