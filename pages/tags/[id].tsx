@@ -8,7 +8,7 @@ import SideBar from "../../components/sidebar";
 import { useAuth } from '../../hooks/useAuth'
 import RepostForm from "../../components/repost";
 import { DateTime } from "luxon";
-import { sortPostsByDate } from "../../services/sort";
+import { sortPostsByDate } from "../../services/feed-filter";
 import { followTagHandler } from "../../services/follow";
 
 

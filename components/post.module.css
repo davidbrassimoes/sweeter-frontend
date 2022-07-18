@@ -1,9 +1,10 @@
 .post {
     display: flex;
+    flex-wrap: wrap;
     max-width: 600px;
     padding: 10px;
     border: .1px solid var(--gray);
-    transition: .2s;
+    border-top: none;
     justify-content: space-between;
     align-items: center;
 }

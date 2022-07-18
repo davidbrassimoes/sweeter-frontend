@@ -3,6 +3,7 @@ import SideBar from "../components/sidebar";
 import SignUp from "../components/sign-up";
 import UserPost from "../components/userpost";
 import { useAuth } from '../hooks/useAuth'
+import Feed from "../components/home-feed";
 
 
 function NeedsLog() {
@@ -23,6 +24,7 @@ export default function Home() {
       <>
         <SideBar />
         <UserPost />
+        <Feed />
       </>
     )
 

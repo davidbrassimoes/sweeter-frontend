@@ -5,6 +5,7 @@ import { useAuth } from '../../hooks/useAuth'
 import SideBar from "../../components/sidebar"
 import { getColor, saveColor } from "../../services/color"
 import { saveBio } from "../../services/user-update";
+import LogOut from "../../components/logout";
 
 export default function Settings() {
     const [profile, setProfile] = useState(null)
@@ -47,6 +48,7 @@ export default function Settings() {
     return (
         <>
             <SideBar />
+
             <div className="post">
                 <div>
                     <Link href={`../users/${profile.id}`}>
@@ -57,6 +59,7 @@ export default function Settings() {
                     <a><h1 className="text-xl user-link"> @{profile.username}</h1></a>
                 </Link>
                 <i>{followers.length} {followers.length === 1 ? "follower" : "followers"}</i>
+                <LogOut />
             </div>
             <div className="post">
                 <h1 className="text-xl">Bio: <i>{profile.bio}</i></h1>

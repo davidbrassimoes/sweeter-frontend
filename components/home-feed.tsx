@@ -1,12 +1,12 @@
-import UserPost from "../../components/userpost";
-import Post from "../../components/post";
+import UserPost from "./userpost";
+import Post from "./post";
 import { useEffect, useState } from "react";
-import { api } from '../../services/api'
-import SideBar from "../../components/sidebar";
+import { api } from '../services/api'
+import SideBar from "./sidebar";
 import { DateTime } from "luxon";
-import Link from "../../node_modules/next/link";
-import { sortPostsByDate, getUserFeed } from "../../services/feed-filter";
-import { useAuth } from "../../hooks/useAuth";
+import Link from "../node_modules/next/link";
+import { sortPostsByDate, getUserFeed } from "../services/feed-filter";
+import { useAuth } from "../hooks/useAuth";
 
 export default function Feed() {
     const { user } = useAuth()
@@ -34,16 +34,16 @@ export default function Feed() {
     if (!posts && !reposts) return <p>Nothing Sweet Here...</p>
 
     const feed = [...posts, ...reposts]
-    sortPostsByDate(feed)
+    const userFeed = getUserFeed(feed, user)
+    sortPostsByDate(userFeed)
+
 
     return (
         <>
-            <SideBar />
-            <UserPost />
             <div className="post">
                 <button className='sweet-button' onClick={() => setRefresh(refresh++)}>Update</button>
             </div>
-            <Post data={feed} />
+            <Post data={userFeed} />
 
         </>
     )

@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
+import Link from '../node_modules/next/link'
 import { api } from "../services/api"
 
 
@@ -42,6 +43,9 @@ export default function UserPost() {
                     onClick={createPost}>
                     <a>Sweet</a>
                 </button>
+                <div className="post">
+                    <p className="text-s user-link"><i>active user:</i><Link href={`../users/${user.id}`}><a>@{user.username}</a></Link></p>
+                </div>
             </form>
         </>
     )
