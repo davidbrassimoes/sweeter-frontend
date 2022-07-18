@@ -19,8 +19,8 @@ export default function Post({ data }) {
         <>
             {data.map(post => (
                 <>
-                    <Link href={post.isRepost ? `../feed/repost/${post.id}` : `../feed/${post.id}`} ><a>
-                        <div className="post" key={post.isRepost ? `${post.id}_r` : post.id}>
+                    <Link key={post.isRepost ? `${post.id}_r` : post.id} href={post.isRepost ? `../feed/repost/${post.id}` : `../feed/${post.id}`} ><a>
+                        <div className="post" >
                             <div>
                                 <Link href={`../users/${post.user.id}`}>
                                     <a><div className="avatar" style={{ backgroundColor: `${post.user.avatarColor}` }}>{post.user.username.substr(0, 1).toUpperCase()}</div></a>
