@@ -50,7 +50,7 @@ export function Profile({ profile, followers }) {
 
 export function NoPosts({ profile }) {
     return (
-        <h1> User @{profile.username} hasn't posted yet! </h1>
+        <div className="no-post text-2xl"> User @{profile.username} hasn't posted yet! </div>
     )
 }
 

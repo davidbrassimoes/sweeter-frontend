@@ -4,8 +4,6 @@ import { useAuth } from '../hooks/useAuth'
 
 
 export default function SideBar() {
-    const { user } = useAuth()
-    const activeUser = user.username
     return (
         <>
             <div className="bar">

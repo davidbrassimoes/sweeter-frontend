@@ -1,8 +1,7 @@
 .sweet-button>a {
     text-decoration: none;
     color: var(--whiter);
-    font-size: .9rem;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .sweet-button {

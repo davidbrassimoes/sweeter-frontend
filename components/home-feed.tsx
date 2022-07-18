@@ -31,12 +31,24 @@ export default function Feed() {
 
 
     if (isLoading) return <p>Loading...</p>
-    if (!posts && !reposts) return <p>Nothing Sweet Here...</p>
 
     const feed = [...posts, ...reposts]
     const userFeed = getUserFeed(feed, user)
     sortPostsByDate(userFeed)
 
+    if (userFeed.length == 0) return (
+        <div className="no-post">
+            <p className="text-3xl"> <i> Nothing Sweet Here...</i></p>
+            <p className="text-3xl"> <i> Start Following</i>
+                <Link href="feed"><a className="user-link"> Users</a></Link> and
+                <Link href="feed"><a className="user-link"> Tags </a></Link>
+            </p>
+            <p className="text-3xl"><i>or</i></p>
+            <p className="text-3xl"> <i> Check the Latest</i>
+                <Link href="feed"><a className="user-link"> SWEETS </a></Link>
+            </p>
+        </div >
+    )
 
     return (
         <>

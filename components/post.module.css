@@ -7,6 +7,17 @@
     border-top: none;
     justify-content: space-between;
     align-items: center;
+    font-weight: 600;
+}
+
+.no-post {
+    text-align: center;
+    padding-top: 35px;
+}
+
+.no-post a {
+    color: var(--blue);
+    font-weight: 800
 }
 
 .post:hover {
@@ -17,12 +28,6 @@
     padding: 5px 10px;
     text-align: end;
     width: 100%;
-}
-
-.post span {
-    margin: 0 5px;
-    color: var(--light-gray);
-    font-weight: 800;
 }
 
 .post i {
