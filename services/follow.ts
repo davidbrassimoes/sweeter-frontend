@@ -24,3 +24,14 @@ export async function followUserHandler(user, myId) {
     console.log(res)
     return alert(`User @${user.username} Followed!`)
 }
+
+export async function unFollowTag(tag, user) {
+    const { data } = await api.get(`users/${user.id}`)
+    const myUserFollows = data[0].followsUser
+    const newUserFollows = new Array
+    const res = await api.put(`users/${user.id}`, { followsUser: newUserFollows })
+
+}
+export async function unFollowUser(user, myUser) {
+
+}

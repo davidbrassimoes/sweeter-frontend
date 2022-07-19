@@ -11,4 +11,8 @@
     --dark-blue: rgba(0, 80, 161, 0.363);
     --blue: rgb(0, 81, 161);
     --light-blue: rgb(0, 128, 255);
+    --green: rgb(0, 161, 81);
+    --light-green: rgb(0, 255, 128);
+    --red: rgb(161, 0, 16);
+    --light-red: rgb(255, 0, 25);
 }

@@ -10,6 +10,7 @@ import RepostForm from "../../components/repost";
 import { DateTime } from "luxon";
 import { sortPostsByDate } from "../../services/feed-filter";
 import { followUserHandler } from "../../services/follow";
+import Icon from "../../components/icon";
 
 export function Profile({ profile, followers }) {
     const router = useRouter()
@@ -35,11 +36,11 @@ export function Profile({ profile, followers }) {
                 <>
                     {
                         followsThisUser ?
-                            <button onClick={() => console.log("let's see about unfollowing")} className="sweet-button">
-                                Unfollow
+                            <button onClick={() => console.log("let's see about unfollowing")} >
+                                <Icon name="user_remove" />
                             </button> :
-                            <button onClick={() => followUserHandler(profile, user)} className="sweet-button">
-                                Follow
+                            <button onClick={() => followUserHandler(profile, user)} >
+                                <Icon name="user_add" />
                             </button>
                     }
                 </>

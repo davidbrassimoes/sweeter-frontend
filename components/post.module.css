@@ -1,13 +1,30 @@
-.post {
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 600px;
-    padding: 10px;
-    border: .1px solid var(--gray);
-    border-top: none;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: 600;
+@media only screen and (min-width: 600px) {
+    .post {
+        display: flex;
+        flex-wrap: wrap;
+        width: 600px;
+        padding: 10px;
+        border: .1px solid var(--gray);
+        border-top: none;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    .post {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100vw;
+        padding: 10px;
+        border: .1px solid var(--gray);
+        border-top: none;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+    }
 }
 
 .no-post {
@@ -22,6 +39,7 @@
 
 .post:hover {
     background-color: var(--darker-gray);
+    transition: .2s;
 }
 
 .post p {
@@ -49,7 +67,7 @@
 
 .avatar:hover {
     filter: opacity(85%);
-    color: var(--light-blue)
+    transition: .2s;
 }
 
 .text-content {
@@ -64,13 +82,33 @@
 
 .to-repost:hover {
     color: var(--blue);
+    transition: .2s;
 }
 
 .user-link:hover {
     color: var(--light-blue);
+    transition: .2s;
 }
 
 .repost {
     display: flex;
     flex-direction: column;
+}
+
+.icon {
+    filter: invert(87%) sepia(11%) saturate(250%) hue-rotate(169deg) brightness(93%) contrast(99%);
+}
+
+.icon:hover {
+    filter: invert(51%) sepia(81%) saturate(6225%) hue-rotate(197deg) brightness(103%) contrast(106%);
+    transition: .2s;
+}
+
+.like {
+    filter: invert(87%) sepia(11%) saturate(250%) hue-rotate(169deg) brightness(93%) contrast(99%);
+    border-radius: 100%;
+}
+
+.like:hover {
+    filter: invert(10%) sepia(81%) saturate(7496%) hue-rotate(351deg) brightness(104%) contrast(106%);
 }

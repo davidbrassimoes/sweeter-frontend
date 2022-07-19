@@ -1,6 +1,7 @@
 import { api } from "../services/api";
 import { useAuth } from '../hooks/useAuth'
 import { FormEvent, useState } from "react";
+import Icon from "./icon";
 
 export default function RepostForm(value) {
     const [repostContent, setRepostContent] = useState('')
@@ -32,9 +33,8 @@ export default function RepostForm(value) {
                     placeholder="ReSweet This!!"
                     required />
                 <button
-                    className="sweet-button"
                     onClick={createRepost}>
-                    <a>Sweet</a>
+                    <a> <Icon name="repost" /> </a>
                 </button>
             </form>
         </>

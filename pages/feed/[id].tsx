@@ -9,6 +9,7 @@ import { useAuth } from '../../hooks/useAuth'
 import { likeHandler } from '../../services/like'
 import RepostForm from "../../components/repost";
 import { DateTime } from "luxon";
+import Icon from "../../components/icon";
 
 
 export default function SoloPost() {
@@ -59,9 +60,10 @@ export default function SoloPost() {
                     <i> {DateTime.fromISO(`${post.createdAt}`).toFormat('dd-MM-yyyy HH:mm')} </i>
                 </div>
                 <div className="post">
-                    <button onClick={() => likeHandler(post, user)} className="sweet-button">
-                        <a>Like {userLikes.length}</a>
+                    <button onClick={() => likeHandler(post, user)} className="like-button">
+                        <a> <Icon name="like" /> {userLikes.length}</a>
                     </button>
+
                     <p> {post.content} </p>
                 </div>
                 <div className="post">

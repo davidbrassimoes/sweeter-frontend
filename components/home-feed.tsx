@@ -7,6 +7,7 @@ import { DateTime } from "luxon";
 import Link from "../node_modules/next/link";
 import { sortPostsByDate, getUserFeed } from "../services/feed-filter";
 import { useAuth } from "../hooks/useAuth";
+import Icon from "./icon";
 
 export default function Feed() {
     const { user } = useAuth()
@@ -53,7 +54,7 @@ export default function Feed() {
     return (
         <>
             <div className="post">
-                <button className='sweet-button' onClick={() => setRefresh(refresh++)}>Update</button>
+                <button onClick={() => setRefresh(refresh++)}> <Icon name="update" /> </button>
             </div>
             <Post data={userFeed} />
 

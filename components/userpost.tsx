@@ -2,6 +2,7 @@ import { FormEvent, useState } from 'react'
 import { useAuth } from '../hooks/useAuth'
 import Link from '../node_modules/next/link'
 import { api } from "../services/api"
+import Icon from './icon'
 
 
 export default function UserPost() {
@@ -39,9 +40,8 @@ export default function UserPost() {
                     placeholder="Tell us something Sweet..."
                     required />
                 <button
-                    className="sweet-button"
                     onClick={createPost}>
-                    <a>Sweet</a>
+                    <a> <Icon name="post" /> </a>
                 </button>
                 <div className="post">
                     <p className="text-s user-link"><i>active user:</i><Link href={`../users/${user.id}`}><a>@{user.username}</a></Link></p>

@@ -1,5 +1,6 @@
 import { FormEvent, useEffect, useState } from "react"
 import SideBar from "../../components/sidebar"
+import TagItem from "../../components/tag-item"
 import { useAuth } from '../../hooks/useAuth'
 import Link from "../../node_modules/next/link"
 import { api } from '../../services/api'
@@ -24,14 +25,7 @@ export default function Tag() {
     return (
         <>
             <SideBar />
-            {tags.map(tag => (
-                <div className="post" key={tag.id}>
-                    <Link href={`tags/${tag.id}`}><a><i className="text-2xl user-link" >#{tag.content}</i></a></Link>
-                    <button onClick={() => followTagHandler(tag, user)} className="sweet-button">
-                        Follow
-                    </button>
-                </div>
-            ))}
+            <TagItem user={user} tags={tags} />
         </>
     )
 }
