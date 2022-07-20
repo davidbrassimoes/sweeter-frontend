@@ -63,6 +63,7 @@
     align-items: center;
     font-weight: 700;
     pointer-events: pointer;
+    color: var(--blacker);
 }
 
 .avatar:hover {
@@ -110,5 +111,13 @@
 }
 
 .like:hover {
-    filter: invert(10%) sepia(81%) saturate(7496%) hue-rotate(351deg) brightness(104%) contrast(106%);
+    filter: invert(28%) sepia(100%) saturate(6726%) hue-rotate(345deg) brightness(91%) contrast(124%);
+}
+
+.liked {
+    filter: invert(28%) sepia(100%) saturate(6726%) hue-rotate(345deg) brightness(91%) contrast(124%);
+}
+
+.liked:hover {
+    filter: invert(15%) sepia(45%) saturate(4934%) hue-rotate(339deg) brightness(88%) contrast(122%);
 }

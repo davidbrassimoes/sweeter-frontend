@@ -13,6 +13,7 @@ export default function Feed() {
     const { user } = useAuth()
     const [posts, setPosts] = useState([])
     const [reposts, setReposts] = useState([])
+    const [usersForLikes, setUsersForLikes] = useState([])
     const [isLoading, setLoading] = useState(false)
     let [refresh, setRefresh] = useState(0)
 
@@ -26,6 +27,11 @@ export default function Feed() {
         setLoading(true)
         api.get('/reposts').then(({ data }) => {
             setReposts(data)
+            setLoading(false)
+        })
+        setLoading(true)
+        api.get(`/users`).then(({ data }) => {
+            setUsersForLikes(data)
             setLoading(false)
         })
     }, [refresh])
@@ -44,7 +50,7 @@ export default function Feed() {
             <div className="post">
                 <button onClick={() => setRefresh(refresh++)}> <Icon name="update" /> </button>
             </div>
-            <Post data={feed} />
+            <Post data={feed} usersForLikes={usersForLikes} myUser={user} />
 
         </>
     )

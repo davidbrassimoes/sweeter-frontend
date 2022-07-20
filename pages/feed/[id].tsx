@@ -46,6 +46,14 @@ export default function SoloPost() {
         })
     })
 
+
+    post.myUserLikes = false
+    user.likes.map(l => {
+        if (l.id == post.id) {
+            post.myUserLikes = true
+        }
+    })
+
     if (post) {
         return (
             <>
@@ -61,7 +69,7 @@ export default function SoloPost() {
                 </div>
                 <div className="post">
                     <button onClick={() => likeHandler(post, user)} className="like-button">
-                        <a> <Icon name="like" /> {userLikes.length}</a>
+                        <a> <Icon name={post.myUserLikes ? "liked" : "like"} /> {userLikes.length}</a>
                     </button>
 
                     <p> {post.content} </p>

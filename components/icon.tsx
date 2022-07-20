@@ -4,6 +4,9 @@ export default function Icon({ name }) {
     if (name == "like") {
         return <Image className="like" src={`/${name}.svg`} height={23} width={23} />
     }
+    if (name == "liked") {
+        return <Image className="liked" src={`/like.svg`} height={23} width={23} />
+    }
     if (
         name == "post" ||
         name == "repost" ||

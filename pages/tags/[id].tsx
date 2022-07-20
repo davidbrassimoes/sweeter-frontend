@@ -56,6 +56,7 @@ export function NoPosts({ profile }) {
 export default function TagProfile() {
     const router = useRouter()
     const { id } = router.query
+    const { user } = useAuth()
     const [isLoading, setLoading] = useState(false)
     const [profile, setProfile] = useState()
     const [posts, setPosts] = useState([])
@@ -121,7 +122,7 @@ export default function TagProfile() {
             <>
                 <SideBar />
                 <Profile profile={profile} followers={followers} />
-                {hasPosts ? <Post data={profilePosts} /> : <NoPosts profile={profile} />}
+                {hasPosts ? <Post data={profilePosts} myUser={user} usersForLikes={allUsers} /> : <NoPosts profile={profile} />}
             </>
         )
     }

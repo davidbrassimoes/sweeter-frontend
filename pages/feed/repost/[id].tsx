@@ -8,6 +8,7 @@ import SideBar from "../../../components/sidebar";
 import { useAuth } from '../../../hooks/useAuth'
 import { DateTime } from "luxon";
 import { likeRepostHandler } from '../../../services/like'
+import Icon from "../../../components/icon";
 
 
 export default function SoloPost() {
@@ -44,22 +45,29 @@ export default function SoloPost() {
         })
     })
 
+    post.myUserLikes = false
+    user.likesRepost.map(l => {
+        if (l.id == post.id) {
+            post.myUserLikes = true
+        }
+    })
+
     if (post) {
         return (
             <>
                 <SideBar />
                 <div className="post">
-                    <Link href={`../users/${post.user.id}`}>
+                    <Link href={`../../users/${post.user.id}`}>
                         <a><div className="avatar" style={{ backgroundColor: `${post.user.avatarColor}` }}>{post.user.username.substr(0, 1).toUpperCase()}</div></a>
                     </Link>
-                    <Link href={`../users/${post.user.id}`}>
+                    <Link href={`../../users/${post.user.id}`}>
                         <a><h2 className="user-link"> @{post.user.username}</h2></a>
                     </Link>
                     <i> {DateTime.fromISO(`${post.createdAt}`).toFormat('dd-MM-yyyy HH:mm')} </i>
                 </div>
                 <div className="post">
-                    <button onClick={() => likeRepostHandler(post, user)} className="sweet-button">
-                        <a>Like {userLikes.length}</a>
+                    <button onClick={() => likeRepostHandler(post, user)} className="like-button">
+                        <a> <Icon name={post.myUserLikes ? "liked" : "like"} /> {userLikes.length}</a>
                     </button>
                     <p> {post.content} </p>
                 </div>

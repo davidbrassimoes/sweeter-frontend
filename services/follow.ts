@@ -12,15 +12,15 @@ export async function followTagHandler(tag, user) {
     return alert(`Tag #${tag.content} Followed!`)
 }
 
-export async function followUserHandler(user, myId) {
-    const { data } = await api.get(`users/${myId}`)
+export async function followUserHandler(user, myUser) {
+    const { data } = await api.get(`users/${myUser.id}`)
     const myUserFollows = data[0].followsUser
     const myUserFollowsId = myUserFollows.map(x => x.id)
 
     if (myUserFollowsId.includes(user.id)) { return alert(`You Already Follow @${user.username}!`) }
 
 
-    const res = await api.put(`users/${myId}`, { followsUser: [...myUserFollows, { "id": user.id }] })
+    const res = await api.put(`users/${myUser.id}`, { followsUser: [...myUserFollows, { "id": user.id }] })
     console.log(res)
     return alert(`User @${user.username} Followed!`)
 }
