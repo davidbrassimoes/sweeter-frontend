@@ -68,7 +68,7 @@ export default function SoloPost() {
                     <i> {DateTime.fromISO(`${post.createdAt}`).toFormat('dd-MM-yyyy HH:mm')} </i>
                 </div>
                 <div className="post">
-                    <button onClick={() => likeHandler(post, user)} className="like-button">
+                    <button onClick={() => likeHandler(post, user)}>
                         <a> <Icon name={post.myUserLikes ? "liked" : "like"} /> {userLikes.length}</a>
                     </button>
 

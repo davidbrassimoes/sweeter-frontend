@@ -79,7 +79,7 @@ export default function SignUp() {
                     <button
                         type="button"
                         onClick={(e) => setAvatarColor(getColor(e))}
-                        className="avatar"
+                        className="sweet-button"
                         style={{ backgroundColor: avatarColor }}>
                         New
                     </button>

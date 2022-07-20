@@ -1,6 +1,7 @@
 import { FormEvent } from 'react'
 import { useAuth } from '../hooks/useAuth'
 import Link from '../node_modules/next/link'
+import Icon from './icon'
 
 export default function LogOut() {
     const { logout } = useAuth()
@@ -8,12 +9,11 @@ export default function LogOut() {
     return (
 
         <button
-            className="sweet-button"
             name="logout"
             id="logout"
             onClick={logout}
         >
-            <Link href="../"><a>Logout</a></Link>
+            <Link href="../"><a><Icon name="logout" /></a></Link>
         </button>
 
     )

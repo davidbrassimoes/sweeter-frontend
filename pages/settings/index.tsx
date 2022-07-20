@@ -6,6 +6,7 @@ import SideBar from "../../components/sidebar"
 import { getColor, saveColor } from "../../services/color"
 import { saveBio } from "../../services/user-update";
 import LogOut from "../../components/logout";
+import Icon from "../../components/icon";
 
 export default function Settings() {
     const [profile, setProfile] = useState(null)
@@ -63,7 +64,7 @@ export default function Settings() {
             </div>
             <div className="post">
                 <h1 className="text-xl">Bio: <i>{profile.bio}</i></h1>
-                <button onClick={() => setEditVisible(!editVisible)} className="sweet-button">Edit</button>
+                <button onClick={() => setEditVisible(!editVisible)}> <Icon name={editVisible ? "toggle_on" : "toggle_off"} /> </button>
             </div>
             {editVisible ?
                 <>
@@ -71,13 +72,13 @@ export default function Settings() {
                         <form className="post userPost">
                             <input onChange={e => setBio(e.target.value)} value={bio} className="text-content" type="text" placeholder={`${profile.bio}`} />
                         </form>
-                        <button onClick={() => saveBio(user, bio)} className="sweet-button">Save</button>
+                        <button onClick={() => saveBio(user, bio)}><Icon name="save" /></button>
                     </div>
                     <div className="post">
                         <h1>Avatar Color:</h1>
                         <button onClick={() => alert(`HEX Color Code: ${oldColor}`)} className="sweet-button" style={{ backgroundColor: oldColor }}>Current</button>
                         <button onClick={(e) => setColor(getColor(e))} className="sweet-button" style={{ backgroundColor: color }}>New</button>
-                        <button onClick={() => saveColor(user, color)} className="sweet-button">Set</button>
+                        <button onClick={() => saveColor(user, color)}><Icon name="save" /></button>
                     </div>
                 </>
                 :
@@ -91,8 +92,8 @@ export default function Settings() {
             {userFollows.map(x => (
                 <div className="post" key={x.id}>
                     <Link href={`users/${x.id}`}><a><i>@{x.username}</i></a></Link>
-                    <button onClick={() => console.log("let's see about unfollowing")} className="sweet-button">
-                        Unfollow
+                    <button onClick={() => console.log("let's see about unfollowing")}>
+                        <Icon name="user_remove" />
                     </button>
                 </div>
             ))}
