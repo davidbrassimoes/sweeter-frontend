@@ -1,32 +1,30 @@
 import { useEffect, useState } from "react"
 import SideBar from "../../components/sidebar"
 import { api } from '../../services/api'
-import { useAuth } from '../../hooks/useAuth'
-import Link from "../../node_modules/next/link"
-import { followTagHandler, followUserHandler } from '../../services/follow'
 import UserItem from "../../components/user-item"
+import Loading from "../../components/loading"
+import NoPost from "../../components/no-post"
 
 export default function User() {
-    const [users, setUsers] = useState(null)
+    const [data, setData] = useState([])
     const [isLoading, setLoading] = useState(false)
-    const myUser = useAuth().user
 
     useEffect(() => {
         setLoading(true)
         api.get('/users').then(({ data }) => {
-            setUsers(data)
+            setData(data)
             setLoading(false)
         })
     }, [])
 
-    if (isLoading) return <p>Loading...</p>
-    if (!users) return <p>No profile data</p>
+    if (isLoading) return <Loading />
+    if (data.length == 0) return <NoPost />
 
 
     return (
         <>
             <SideBar />
-            <UserItem myUser={myUser} users={users} />
+            <UserItem data={data} />
         </>
     )
 

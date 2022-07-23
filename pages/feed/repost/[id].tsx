@@ -1,7 +1,5 @@
 import Link from "../../../node_modules/next/link";
 import { useRouter } from "../../../node_modules/next/router";
-import UserPost from "../../../components/userpost";
-import Post from "../../../components/post";
 import { FormEvent, useEffect, useState } from "react";
 import { api } from '../../../services/api'
 import SideBar from "../../../components/sidebar";

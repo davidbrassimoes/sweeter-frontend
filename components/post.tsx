@@ -3,55 +3,15 @@ import Link from "../node_modules/next/link";
 import { likeHandler, likeRepostHandler } from '../services/like'
 import Icon from "./icon";
 
+export default function Post({ data }) {
 
-
-export default function Post({ data, usersForLikes, myUser }) {
-
-    data.map(post => {
-        post.likes = 0
-        post.myUserLikes = false
-
-        if (post.post == undefined) {
-            post.isRepost = false
-
-            usersForLikes.map(u => {
-                u.likes.map(like => {
-                    if (like.id == post.id) {
-                        post.likes++
-                    }
-                })
-            })
-
-            myUser.likes.map(l => {
-                if (l.id == post.id) {
-                    post.myUserLikes = true
-                }
-            })
-        }
-        if (post.post != undefined) {
-            post.isRepost = true
-
-            usersForLikes.map(u => {
-                u.likesRepost.map(like => {
-                    if (like.id == post.id) {
-                        post.likes++
-                    }
-                })
-            })
-
-            myUser.likesRepost.map(l => {
-                if (l.id == post.id) {
-                    post.myUserLikes = true
-                }
-            })
-        }
-    })
+    const { feed, myUser } = data
 
     return (
         <>
-            {data.map(post => (
-                <>
-                    <Link key={post.isRepost ? `${post.id}_r` : post.id} href={post.isRepost ? `../feed/repost/${post.id}` : `../feed/${post.id}`} ><a>
+            {feed.map(post => (
+                <div key={post.isRepost ? `${post.id}_r` : post.id}>
+                    <Link href={post.isRepost ? `../feed/repost/${post.id}` : `../feed/${post.id}`} ><a>
                         <div className="post" >
                             <div>
                                 <Link href={`../users/${post.user.id}`}>
@@ -97,7 +57,7 @@ export default function Post({ data, usersForLikes, myUser }) {
                             } </>
                         </div>
                     </a></Link>
-                </>
+                </div>
             ))}
         </>
     )

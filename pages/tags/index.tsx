@@ -1,31 +1,29 @@
-import { FormEvent, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
+import Loading from "../../components/loading"
+import NoPost from "../../components/no-post"
 import SideBar from "../../components/sidebar"
 import TagItem from "../../components/tag-item"
-import { useAuth } from '../../hooks/useAuth'
-import Link from "../../node_modules/next/link"
 import { api } from '../../services/api'
-import { followTagHandler } from '../../services/follow'
 
 export default function Tag() {
-    const [tags, setTags] = useState(null)
+    const [data, setData] = useState([])
     const [isLoading, setLoading] = useState(false)
-    const { user } = useAuth()
 
     useEffect(() => {
         setLoading(true)
         api.get('/tags').then(({ data }) => {
-            setTags(data)
+            setData(data)
             setLoading(false)
         })
     }, [])
 
-    if (isLoading) return <p>Loading...</p>
-    if (!tags) return <p>No profile data</p>
+    if (isLoading) return <Loading />
+    if (data.length == 0) return <NoPost />
 
     return (
         <>
             <SideBar />
-            <TagItem user={user} tags={tags} />
+            <TagItem data={data} />
         </>
     )
 }

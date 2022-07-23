@@ -16,7 +16,7 @@ export default function SideBar() {
                     <Link href="/feed"><a><Icon name="feed" /></a></Link>
                     <Link href="/users"><a><Icon name="users" /></a></Link>
                     <Link href="/tags"><a><Icon name="tags" /></a></Link>
-                    <Link href="/chat"><a><Icon name="chat" /></a></Link>
+                    <Link href="/inbox"><a><Icon name="inbox" /></a></Link>
                     <Link href="/settings"><a><Icon name="settings" /></a></Link>
                 </div>
             </div>

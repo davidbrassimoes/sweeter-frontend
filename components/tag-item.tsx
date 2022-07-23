@@ -1,21 +1,9 @@
 import Link from "../node_modules/next/link";
 import { followTagHandler } from "../services/follow";
-import Icon from "./icon";
 
-export default function TagItem({ user, tags }) {
-    const { followsTag } = user
+export default function TagItem({ data }) {
+    const { myUser, tags } = data
 
-    tags.map(t => {
-        t.followsThisTag = false
-    })
-
-    followsTag.map(x => {
-        tags.map(t => {
-            if (x.id === t.id) {
-                t.followsThisTag = true
-            }
-        })
-    })
     return (
         <>
             {tags.map(tag => (
@@ -27,7 +15,7 @@ export default function TagItem({ user, tags }) {
                                 <button onClick={() => console.log("let's see about unfollowing")} className="sweet-button">
                                     Unfollow
                                 </button> :
-                                <button onClick={() => followTagHandler(tag, user)} className="sweet-button">
+                                <button onClick={() => followTagHandler(tag, myUser)} className="sweet-button">
                                     Follow
                                 </button>
                         }

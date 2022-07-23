@@ -7,8 +7,8 @@
 @import "./font.css";
 
 /* TEMP */
-@import "../components/button.module.css";
-@import "../components/login.module.css";
-@import "../components/post.module.css";
-@import "../components/userpost.module.css";
+@import "./button.css";
+@import ".//login.css";
+@import "./post.css";
+@import "./userpost.css";
 /* @import "../components/sidebar.module.css"; */

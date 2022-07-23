@@ -2,20 +2,8 @@ import Link from "../node_modules/next/link";
 import { followUserHandler } from "../services/follow";
 import Icon from "./icon";
 
-export default function UserItem({ myUser, users }) {
-    const { followsUser } = myUser
-
-    users.map(u => {
-        u.followsThisUser = false
-    })
-
-    followsUser.map(x => {
-        users.map(u => {
-            if (x.id === u.id) {
-                u.followsThisUser = true
-            }
-        })
-    })
+export default function UserItem({ data }) {
+    const { myUser, users } = data
 
     return (
         <>
