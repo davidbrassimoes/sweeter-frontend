@@ -1,5 +1,4 @@
-import { FormEvent, useState } from 'react'
-import { useAuth } from '../hooks/useAuth'
+import { FormEvent } from 'react'
 import { api } from "../services/api"
 
 

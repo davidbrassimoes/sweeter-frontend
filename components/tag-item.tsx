@@ -1,5 +1,5 @@
 import Link from "../node_modules/next/link";
-import { followTagHandler } from "../services/follow";
+import { followTag, removeFollowTag } from "../services/follow";
 
 export default function TagItem({ data }) {
     const { myUser, tags } = data
@@ -12,10 +12,10 @@ export default function TagItem({ data }) {
                     <>
                         {
                             tag.followsThisTag ?
-                                <button onClick={() => console.log("let's see about unfollowing")} className="sweet-button">
+                                <button onClick={() => removeFollowTag(tag)} className="sweet-button">
                                     Unfollow
                                 </button> :
-                                <button onClick={() => followTagHandler(tag, myUser)} className="sweet-button">
+                                <button onClick={() => followTag(tag)} className="sweet-button">
                                     Follow
                                 </button>
                         }

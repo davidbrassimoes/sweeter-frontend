@@ -1,5 +1,5 @@
 import Link from "../node_modules/next/link";
-import { followUserHandler } from "../services/follow";
+import { followUser, removeFollowUser } from "../services/follow";
 import Icon from "./icon";
 
 export default function UserItem({ data }) {
@@ -18,10 +18,10 @@ export default function UserItem({ data }) {
                     <>
                         {
                             user.followsThisUser ?
-                                <button onClick={() => console.log("let's see about unfollowing")} >
+                                <button onClick={() => removeFollowUser(user)} >
                                     <Icon name="user_remove" />
                                 </button> :
-                                <button onClick={() => followUserHandler(user, myUser)} >
+                                <button onClick={() => followUser(user)} >
                                     <Icon name="user_add" />
                                 </button>
                         }

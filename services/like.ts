@@ -1,24 +1,22 @@
 import { api } from "./api"
 
-export async function likeHandler(post, user) {
-    const { data } = await api.get(`users/${user.id}`)
-    const myUserLikes = data[0].likes
-    const myUserLikesId = myUserLikes.map(x => x.id)
+export async function like(post) {
+    const { data } = await api.put(`like/post/${post.id}`)
 
-    if (myUserLikesId.includes(post.id)) { return alert("Already Liked!") }
-
-    const res = await api.put(`users/${user.id}`, { likes: [...myUserLikes, { "id": post.id }] })
-    console.log(res)
-    return alert("Post Liked!")
+    return data
 }
-export async function likeRepostHandler(post, user) {
-    const { data } = await api.get(`users/${user.id}`)
-    const myUserLikes = data[0].likesRepost
-    const myUserLikesId = myUserLikes.map(x => x.id)
+export async function likeRepost(post) {
+    const { data } = await api.put(`like/repost/${post.id}`)
 
-    if (myUserLikesId.includes(post.id)) { return alert("Already Liked!") }
+    return data
+}
+export async function removeLike(post) {
+    const { data } = await api.delete(`like/post/${post.id}`)
 
-    const res = await api.put(`users/${user.id}`, { likesRepost: [...myUserLikes, { "id": post.id }] })
-    console.log(res)
-    return alert("Post Liked!")
+    return data
+}
+export async function removeLikeRepost(post) {
+    const { data } = await api.delete(`like/repost/${post.id}`)
+
+    return data
 }

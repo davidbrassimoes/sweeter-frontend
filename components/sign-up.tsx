@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import { api } from "../services/api"
-import { getColor, saveColor } from "../services/color"
+import { getColor } from "../services/color"
 
 export default function SignUp() {
 

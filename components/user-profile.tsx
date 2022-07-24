@@ -1,5 +1,5 @@
 import { useAuth } from "../hooks/useAuth"
-import { followUserHandler } from "../services/follow"
+import { followUser, removeFollowUser } from "../services/follow"
 import Icon from "./icon"
 
 export default function UserProfile({ data }) {
@@ -18,10 +18,10 @@ export default function UserProfile({ data }) {
                 <>
                     {
                         data.followsThisUser ?
-                            <button onClick={() => console.log("let's see about unfollowing")} >
+                            <button onClick={() => removeFollowUser(data)} >
                                 <Icon name="user_remove" />
                             </button> :
-                            <button onClick={() => followUserHandler(data, user)} >
+                            <button onClick={() => followUser(data)} >
                                 <Icon name="user_add" />
                             </button>
                     }

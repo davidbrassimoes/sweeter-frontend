@@ -1,8 +1,7 @@
 import { useAuth } from "../hooks/useAuth"
-import { followTagHandler } from "../services/follow"
+import { followTag, removeFollowTag } from "../services/follow"
 
 export default function TagProfile({ data }) {
-    const { user } = useAuth()
 
     return (
         <>
@@ -13,10 +12,10 @@ export default function TagProfile({ data }) {
                 <>
                     {
                         data.followsThisTag ?
-                            <button onClick={() => console.log("let's see about unfollowing")} className="sweet-button">
+                            <button onClick={() => removeFollowTag(data)} className="sweet-button">
                                 Unfollow
                             </button> :
-                            <button onClick={() => followTagHandler(data, user)} className="sweet-button">
+                            <button onClick={() => followTag(data)} className="sweet-button">
                                 Follow
                             </button>
                     }

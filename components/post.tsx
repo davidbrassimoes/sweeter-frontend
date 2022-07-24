@@ -1,11 +1,11 @@
 import { DateTime } from "luxon";
 import Link from "../node_modules/next/link";
-import { likeHandler, likeRepostHandler } from '../services/like'
+import { like, likeRepost, removeLike, removeLikeRepost } from '../services/like'
 import Icon from "./icon";
 
 export default function Post({ data }) {
 
-    const { feed, myUser } = data
+    const { feed } = data
 
     return (
         <>
@@ -25,22 +25,33 @@ export default function Post({ data }) {
                                     {
                                         post.isRepost ?
                                             <>
-
-                                                <button onClick={() => likeRepostHandler(post, myUser)}>
-                                                    <a> <Icon name={post.myUserLikes ? "liked" : "like"} /> {post.likes}</a>
-                                                </button>
-
+                                                {
+                                                    post.myUserLikes ?
+                                                        <button onClick={() => removeLikeRepost(post)}>
+                                                            <a> <Icon name="liked" /> {post.likes}</a>
+                                                        </button>
+                                                        :
+                                                        <button onClick={() => likeRepost(post)}>
+                                                            <a> <Icon name="like" /> {post.likes}</a>
+                                                        </button>
+                                                }
                                             </>
                                             :
                                             <>
-                                                <button onClick={() => likeHandler(post, myUser)}>
-                                                    <a> <Icon name={post.myUserLikes ? "liked" : "like"} /> {post.likes}</a>
-                                                </button>
+                                                {
+                                                    post.myUserLikes ?
+                                                        <button onClick={() => removeLike(post)}>
+                                                            <a> <Icon name="liked" /> {post.likes}</a>
+                                                        </button>
+                                                        :
+                                                        <button onClick={() => like(post)}>
+                                                            <a> <Icon name="like" /> {post.likes}</a>
+                                                        </button>
+                                                }
                                             </>
                                     }
                                 </>
                             </div>
-
                             <> {post.isRepost ?
                                 <>
                                     <div key={post.post.id}>
@@ -61,6 +72,5 @@ export default function Post({ data }) {
             ))}
         </>
     )
-
 }
 

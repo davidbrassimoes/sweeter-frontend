@@ -1,37 +1,25 @@
 import { api } from "./api"
 
-export async function followTagHandler(tag, user) {
-    const { data } = await api.get(`users/${user.id}`)
-    const myUserFollows = data[0].followsTag
-    const myUserFollowsId = myUserFollows.map(x => x.id)
+export async function followTag(tag) {
+    const { data } = await api.put(`follow/tag/${tag.id}`)
 
-    if (myUserFollowsId.includes(tag.id)) { return alert(`You Already Follow #${tag.content}!`) }
-
-    const res = await api.put(`users/${user.id}`, { followsTag: [...myUserFollows, { "id": tag.id }] })
-    console.log(res)
-    return alert(`Tag #${tag.content} Followed!`)
+    return data
 }
 
-export async function followUserHandler(user, myUser) {
-    const { data } = await api.get(`users/${myUser.id}`)
-    const myUserFollows = data[0].followsUser
-    const myUserFollowsId = myUserFollows.map(x => x.id)
+export async function followUser(user) {
+    const { data } = await api.put(`follow/user/${user.id}`)
 
-    if (myUserFollowsId.includes(user.id)) { return alert(`You Already Follow @${user.username}!`) }
-
-
-    const res = await api.put(`users/${myUser.id}`, { followsUser: [...myUserFollows, { "id": user.id }] })
-    console.log(res)
-    return alert(`User @${user.username} Followed!`)
+    return data
 }
 
-export async function unFollowTag(tag, user) {
-    const { data } = await api.get(`users/${user.id}`)
-    const myUserFollows = data[0].followsUser
-    const newUserFollows = new Array
-    const res = await api.put(`users/${user.id}`, { followsUser: newUserFollows })
+export async function removeFollowTag(tag) {
+    const { data } = await api.delete(`follow/user/${tag.id}`)
+
+    return data
 
 }
-export async function unFollowUser(user, myUser) {
+export async function removeFollowUser(user) {
+    const { data } = await api.delete(`follow/user/${user.id}`)
 
+    return data
 }

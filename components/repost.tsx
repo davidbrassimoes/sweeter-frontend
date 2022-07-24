@@ -5,7 +5,6 @@ import Icon from "./icon";
 
 export default function RepostForm(value) {
     const [repostContent, setRepostContent] = useState('')
-    const [oldPostId, setOldPostIdContent] = useState(null)
     const { user } = useAuth()
 
     const createRepost = async (e: FormEvent) => {
