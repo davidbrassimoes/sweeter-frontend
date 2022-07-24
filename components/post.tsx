@@ -22,34 +22,28 @@ export default function Post({ data }) {
                                 </Link>
                                 <h3><i>{DateTime.fromISO(`${post.createdAt}`).toFormat('dd-MM-yyyy HH:mm')}</i></h3>
                                 <>
-                                    {
-                                        post.isRepost ?
-                                            <>
-                                                {
-                                                    post.myUserLikes ?
-                                                        <button onClick={() => removeLikeRepost(post)}>
-                                                            <a> <Icon name="liked" /> {post.likes}</a>
-                                                        </button>
-                                                        :
-                                                        <button onClick={() => likeRepost(post)}>
-                                                            <a> <Icon name="like" /> {post.likes}</a>
-                                                        </button>
-                                                }
-                                            </>
-                                            :
-                                            <>
-                                                {
-                                                    post.myUserLikes ?
-                                                        <button onClick={() => removeLike(post)}>
-                                                            <a> <Icon name="liked" /> {post.likes}</a>
-                                                        </button>
-                                                        :
-                                                        <button onClick={() => like(post)}>
-                                                            <a> <Icon name="like" /> {post.likes}</a>
-                                                        </button>
-                                                }
-                                            </>
-                                    }
+                                    {post.isRepost ?
+                                        <>
+                                            {post.myUserLikes ?
+                                                <button onClick={() => removeLikeRepost(post)}>
+                                                    <a> <Icon name="liked" /> {post.likes}</a>
+                                                </button>
+                                                :
+                                                <button onClick={() => likeRepost(post)}>
+                                                    <a> <Icon name="like" /> {post.likes}</a>
+                                                </button>}
+                                        </>
+                                        :
+                                        <>
+                                            {post.myUserLikes ?
+                                                <button onClick={() => removeLike(post)}>
+                                                    <a> <Icon name="liked" /> {post.likes}</a>
+                                                </button>
+                                                :
+                                                <button onClick={() => like(post)}>
+                                                    <a> <Icon name="like" /> {post.likes}</a>
+                                                </button>}
+                                        </>}
                                 </>
                             </div>
                             <> {post.isRepost ?
